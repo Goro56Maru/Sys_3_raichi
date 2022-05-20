@@ -11,9 +11,8 @@ import android.widget.ListView
 import androidx.fragment.app.Fragment
 
 
-class MemberSetting: Fragment(R.layout.activity_member){
-
-
+class MemberSetting/*: Fragment(R.layout.activity_member)*/{
+    /*
     //設定のHOME画面 listView作成
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -27,5 +26,5 @@ class MemberSetting: Fragment(R.layout.activity_member){
         listView.adapter = adapter
 
         return mainFrame
-    }
+    }*/
 }
