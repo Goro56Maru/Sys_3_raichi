@@ -15,6 +15,9 @@ class WantedListAdapter (private val WantedListData: MutableList<WantedListData>
 
     class ListViewHolder(view: View) : RecyclerView.ViewHolder(view){
         var ListName: TextView = view.findViewById(R.id.WantedName)
+        var Money: TextView = view.findViewById(R.id.WantedMoney)
+        var Priority: TextView = view.findViewById(R.id.Priority)
+        var Proponent: TextView = view.findViewById(R.id.Proponent)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
@@ -30,6 +33,9 @@ class WantedListAdapter (private val WantedListData: MutableList<WantedListData>
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         holder.ListName.text = WantedListData[position].ListName
+        holder.Money.text = WantedListData[position].ListMoney.toString()+"円"
+        holder.Priority.text = WantedListData[position].ListPriority.toString()
+        holder.Proponent.text = WantedListData[position].ListProp
         holder.itemView.setOnClickListener {
             listener.onItemClickListener(it, position, WantedListData[position])
         }
