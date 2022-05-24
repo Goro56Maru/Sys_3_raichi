@@ -13,10 +13,12 @@
         android:layout_marginTop="80dp"
         android:gravity="center"
         android:text="ログイン\nまたはアカウント作成"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/email" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <Button
@@ -32,7 +34,7 @@
         app:layout_constraintTop_toBottomOf="@+id/pass" />
 
     <Button
-        android:id="@+id/addbutton"
+        android:id="@+id/register_button"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
