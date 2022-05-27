@@ -1,16 +1,15 @@
 package ecc_sys3_raichi.sys_3_raichi
 
 import android.os.Bundle
-import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
-import kotlinx.android.synthetic.main.activity_notif.*
+import kotlinx.android.synthetic.main.fragment_notif.*
 
 
-class NotifSetting: Fragment(R.layout.activity_notif) {
+class NotifSetting: Fragment(R.layout.fragment_notif) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
