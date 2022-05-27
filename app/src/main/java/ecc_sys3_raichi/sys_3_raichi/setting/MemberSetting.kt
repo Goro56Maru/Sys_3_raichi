@@ -1,4 +1,4 @@
-package ecc_sys3_raichi.sys_3_raichi
+package ecc_sys3_raichi.sys_3_raichi.setting
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import androidx.fragment.app.Fragment
+import ecc_sys3_raichi.sys_3_raichi.R
 
 
 class MemberSetting: Fragment(R.layout.fragment_member){

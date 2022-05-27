@@ -1,4 +1,4 @@
-package ecc_sys3_raichi.sys_3_raichi
+package ecc_sys3_raichi.sys_3_raichi.setting
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,6 +9,8 @@ import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import ecc_sys3_raichi.sys_3_raichi.MainActivity
+import ecc_sys3_raichi.sys_3_raichi.R
 import kotlinx.android.synthetic.main.fragment_settings.*
 
 class Settings : Fragment(R.layout.fragment_settings) {

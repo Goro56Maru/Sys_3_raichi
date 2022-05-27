@@ -1,4 +1,4 @@
-package ecc_sys3_raichi.sys_3_raichi
+package ecc_sys3_raichi.sys_3_raichi.setting
 
 import android.os.Bundle
 import android.view.View
@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.*
 import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
+import ecc_sys3_raichi.sys_3_raichi.R
 import kotlinx.android.synthetic.main.fragment_notif.*
 
 

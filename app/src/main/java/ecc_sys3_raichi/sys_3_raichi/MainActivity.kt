@@ -3,6 +3,7 @@ package ecc_sys3_raichi.sys_3_raichi
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import ecc_sys3_raichi.sys_3_raichi.setting.Settings
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
