@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_tab_navigation"
+    app:startDestination="@id/wantedTabFragment">
+
+    <fragment
+        android:id="@+id/wantedTabFragment"
+        android:name="ecc_sys3_raichi.sys_3_raichi.wantedlist.WantedTabFragment"
+        android:label="fragment_wanted_tab"
+        tools:layout="@layout/fragment_wanted_tab" >
+        <action
+            android:id="@+id/action_wantedTabFragment_to_settingTabFragment"
+            app:destination="@id/settingTabFragment" />
+        <action
+            android:id="@+id/action_wantedTabFragment_to_wishList"
+            app:destination="@id/wishList" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingTabFragment"
+        android:name="ecc_sys3_raichi.sys_3_raichi.setting.SettingTabFragment"
+        android:label="fragment_setting_tab"
+        tools:layout="@layout/fragment_setting_tab" >
+        <action
+            android:id="@+id/action_settingTabFragment_to_wishList"
+            app:destination="@id/wishList" />
+        <action
+            android:id="@+id/action_settingTabFragment_to_wantedTabFragment"
+            app:destination="@id/wantedTabFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/wishList"
+        android:name="ecc_sys3_raichi.sys_3_raichi.wishlist.WishList"
+        android:label="activity_wish_list"
+        tools:layout="@layout/activity_wish_list" >
+        <action
+            android:id="@+id/action_wishList_to_settingTabFragment"
+            app:destination="@id/settingTabFragment" />
+        <action
+            android:id="@+id/action_wishList_to_wantedTabFragment"
+            app:destination="@id/wantedTabFragment" />
+    </fragment>
+</navigation>

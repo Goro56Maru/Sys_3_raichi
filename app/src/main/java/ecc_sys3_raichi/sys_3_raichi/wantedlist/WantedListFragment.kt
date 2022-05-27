@@ -5,7 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import ecc_sys3_raichi.sys_3_raichi.R
 import ecc_sys3_raichi.sys_3_raichi.databinding.FragmentWantedListBinding
 
 class WantedListFragment : Fragment() {
@@ -50,9 +52,20 @@ class WantedListFragment : Fragment() {
             adapter.notifyDataSetChanged()  //データを追加後、表示を更新
         }
 
+        //リストが選択された時
         adapter.setOnItemClickListener(object :WantedListAdapter.OnItemClickListener{
-
+            override fun onItemClickListener(view: View, position: Int, clickedText: WantedListData) {
+                //そのリストの詳細画面に遷移する
+                findNavController().navigate(R.id.action_wantedListFragment_to_wantedDetailsFragment)
+            }
         })
+
+        //つかえる金額が押された時
+        binding.useMoney.setOnClickListener {
+            //navigateで収入と支出画面へ遷移する
+            findNavController().navigate(R.id.action_wantedListFragment_to_incomeSpending_Fragment)
+        }
+
 
 
         return view
