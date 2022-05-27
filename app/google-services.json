@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "175551433370",
+    "project_id": "sys3-raichi",
+    "storage_bucket": "sys3-raichi.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:175551433370:android:d7a32f35a80a5ddf87ad23",
+        "android_client_info": {
+          "package_name": "ecc_sys3_raichi.sys_3_raichi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "175551433370-shm4dk8l9ngp0stup308leg4d92i9b5m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAEfaq651lynCVN_wagKXTu9MXlU062Y4g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "175551433370-shm4dk8l9ngp0stup308leg4d92i9b5m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

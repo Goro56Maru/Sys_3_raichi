@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/wanted_list_tab_navigation"
+    app:startDestination="@id/wantedListFragment">
+
+    <fragment
+        android:id="@+id/wantedListFragment"
+        android:name="ecc_sys3_raichi.sys_3_raichi.wantedlist.WantedListFragment"
+        android:label="fragment_wanted_list"
+        tools:layout="@layout/fragment_wanted_list" >
+        <action
+            android:id="@+id/action_wantedListFragment_to_incomeSpending_Fragment"
+            app:destination="@id/incomeSpending_Fragment"
+            app:popUpTo="@id/wantedListFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_wantedListFragment_to_wantedDetailsFragment"
+            app:destination="@id/wantedDetailsFragment"
+            app:popUpTo="@id/wantedListFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/wantedDetailsFragment"
+        android:name="ecc_sys3_raichi.sys_3_raichi.wantedlist.WantedDetailsFragment"
+        android:label="fragment_wanted_details"
+        tools:layout="@layout/fragment_wanted_details" />
+    <fragment
+        android:id="@+id/incomeSpending_Fragment"
+        android:name="ecc_sys3_raichi.sys_3_raichi.wantedlist.IncomeSpending_Fragment"
+        android:label="IncomeSpending_Fragment" />
+</navigation>
