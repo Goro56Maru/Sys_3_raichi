@@ -8,13 +8,12 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.Toast
-import androidx.core.view.size
 import androidx.fragment.app.Fragment
-import kotlinx.android.synthetic.main.activity_settings.*
+import kotlinx.android.synthetic.main.fragment_settings.*
 
-class Settings : Fragment(R.layout.activity_settings) {
+class Settings : Fragment(R.layout.fragment_settings) {
 
-    private val dataArray = arrayOf("アカウント作成", "メンバー設定", "通知", "ログアウト", "アカウント削除")
+    private val dataArray = arrayOf("アカウント設定", "メンバー設定", "通知", "ログアウト", "アカウント削除")
     private val jump = arrayOf(MainActivity(), MemberSetting(), NotifSetting())
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -32,7 +31,7 @@ class Settings : Fragment(R.layout.activity_settings) {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-        val mainFrame = inflater!!.inflate(R.layout.activity_settings, container, false)
+        val mainFrame = inflater!!.inflate(R.layout.fragment_settings, container, false)
         val listView = mainFrame.findViewById(R.id.listView) as ListView
 
         val adapter = ArrayAdapter<String>(requireContext(), R.layout.txt_design, dataArray)
