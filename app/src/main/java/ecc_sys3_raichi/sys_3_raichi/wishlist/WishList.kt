@@ -66,12 +66,9 @@ class WishList : Fragment() {
 
             //入力された各情報を変数に入れる
             list_name = binding.wishname.text.toString()
-            if (binding.wishmoney.text.isNullOrEmpty()){
-                list_money = 0
-            }else{
-                list_money = binding.wishmoney.text.toString().toInt()
-
-            }
+            //エラー回避のため、何も入力されていない時は0を格納
+            if (binding.wishmoney.text.isNullOrEmpty()) list_money = 0
+            else list_money = binding.wishmoney.text.toString().toInt()
             list_comment = binding.wishcomment.text.toString()
 
             //欲しいものの名前が入力されなかった場合Toastを表示
