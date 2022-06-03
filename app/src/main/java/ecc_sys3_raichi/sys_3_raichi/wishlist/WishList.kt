@@ -64,16 +64,19 @@ class WishList : Fragment() {
         //登録ボタンが押された時の処理
         binding.wishaddbutton.setOnClickListener {
 
-            //入力された各情報を変数に入れる
-            list_name = binding.wishname.text.toString()
-            //エラー回避のため、何も入力されていない時は0を格納
-            if (binding.wishmoney.text.isNullOrEmpty()) list_money = 0
-            else list_money = binding.wishmoney.text.toString().toInt()
-            list_comment = binding.wishcomment.text.toString()
-
             //欲しいものの名前が入力されなかった場合Toastを表示
-            if (list_name.isNullOrEmpty())  Toast.makeText(context,"リスト名を入力してください。", Toast.LENGTH_SHORT).show()
-            else{ //欲しいものの名前が入力された時に登録処理を行う
+            if (binding.wishname.text.isNullOrEmpty())  Toast.makeText(context,"リスト名を入力してください。", Toast.LENGTH_SHORT).show()
+            //欲しいものの金額が入力されなかった場合Toastを表示
+            else if(binding.wishmoney.text.isNullOrEmpty()) Toast.makeText(context,"金額を入力してください。", Toast.LENGTH_SHORT).show()
+            //欲しいものの名前が入力された時に登録処理を行う
+            else{
+                //入力された各情報を変数に入れる
+                list_name = binding.wishname.text.toString()
+                //エラー回避のため、何も入力されていない時は0を格納
+                if (binding.wishmoney.text.isNullOrEmpty()) list_money = 0
+                else list_money = binding.wishmoney.text.toString().toInt()
+                list_comment = binding.wishcomment.text.toString()
+
                 //Firestoreに登録中する際に関数を呼び出し、ボタン等を押せない状態にしておく
                 Displaychange(false)
                 GlobalScope.launch {
