@@ -2,7 +2,10 @@ package ecc_sys3_raichi.sys_3_raichi
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.google.android.material.tabs.TabLayoutMediator
 import ecc_sys3_raichi.sys_3_raichi.databinding.ActivityHomeBinding
+
+val TabArray = arrayOf("欲しいもの\n一覧","欲しいもの\n登録","設定")
 
 class HomeActivity : AppCompatActivity() {
 
@@ -13,5 +16,17 @@ class HomeActivity : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+
+        val viewPager = binding.viewPager2
+        val tabLayout = binding.tabLayout
+
+        val adapter = HomePagerAdapter(supportFragmentManager, lifecycle)
+        viewPager.adapter = adapter
+
+        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+            tab.text = TabArray[position]
+        }.attach()
+
+
     }
 }
