@@ -6,6 +6,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import ecc_sys3_raichi.sys_3_raichi.setting.SettingTabFragment
 import ecc_sys3_raichi.sys_3_raichi.wantedlist.WantedListFragment
+import ecc_sys3_raichi.sys_3_raichi.wantedlist.WantedTabFragment
 import ecc_sys3_raichi.sys_3_raichi.wishlist.WishList
 
 class HomePagerAdapter  (fragmentManager: FragmentManager, lifecycle: Lifecycle) : FragmentStateAdapter(fragmentManager, lifecycle){
@@ -16,10 +17,10 @@ class HomePagerAdapter  (fragmentManager: FragmentManager, lifecycle: Lifecycle)
     override fun createFragment(position: Int): Fragment {
         return when (position) {
             //どのFragmentを表示するか
-            0 -> WantedListFragment()
+            0 -> WantedTabFragment()
             1 -> WishList()
             2 -> SettingTabFragment()
-            else -> WantedListFragment()
+            else -> WantedTabFragment()
         }
     }
 }
