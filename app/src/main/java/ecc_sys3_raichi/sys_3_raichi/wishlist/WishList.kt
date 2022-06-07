@@ -60,6 +60,11 @@ class WishList : Fragment() {
         if (currentUser != null) {
             uid = auth.uid.toString()
         }
+        //テスト用のID代入
+        uid = "6BioaJRzzhNkBgaHP2boi9W7HGF2"
+
+        //どのユーザーでログインしているかを取得する
+        user_name = "父"
 
         //登録ボタンが押された時の処理
         binding.wishaddbutton.setOnClickListener {
@@ -100,7 +105,8 @@ class WishList : Fragment() {
         var CreateListData = hashMapOf(
             "list_name" to list_name,
             "list_money" to list_money,
-            "list_comment" to list_comment
+            "list_comment" to list_comment,
+            "list_prop" to user_name
         )
 
         //FireStoreへの登録処理
