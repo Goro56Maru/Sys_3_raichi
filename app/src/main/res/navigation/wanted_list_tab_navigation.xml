@@ -25,7 +25,11 @@
         android:id="@+id/wantedDetailsFragment"
         android:name="ecc_sys3_raichi.sys_3_raichi.wantedlist.WantedDetailsFragment"
         android:label="fragment_wanted_details"
-        tools:layout="@layout/fragment_wanted_details" />
+        tools:layout="@layout/fragment_wanted_details" >
+        <action
+            android:id="@+id/action_wantedDetailsFragment_to_wantedListFragment"
+            app:destination="@id/wantedListFragment" />
+    </fragment>
     <fragment
         android:id="@+id/incomeSpending_Fragment"
         android:name="ecc_sys3_raichi.sys_3_raichi.wantedlist.IncomeSpending_Fragment"

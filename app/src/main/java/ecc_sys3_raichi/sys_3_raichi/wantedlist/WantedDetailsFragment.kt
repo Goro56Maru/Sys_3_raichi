@@ -10,8 +10,11 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import ecc_sys3_raichi.sys_3_raichi.R
 import ecc_sys3_raichi.sys_3_raichi.databinding.FragmentWantedDetailsBinding
+
+var LISTID = ""
 
 class WantedDetailsFragment : Fragment() {
 
@@ -76,7 +79,10 @@ class WantedDetailsFragment : Fragment() {
         }
 
 
-
+        //戻るボタンが押された時の処理
+        binding.backButton.setOnClickListener {
+            findNavController().navigate(R.id.action_wantedDetailsFragment_to_wantedListFragment)
+        }
 
         return view
     }
