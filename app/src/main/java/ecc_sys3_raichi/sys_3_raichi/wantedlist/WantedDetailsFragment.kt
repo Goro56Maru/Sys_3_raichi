@@ -61,8 +61,8 @@ class WantedDetailsFragment : Fragment() {
         if (currentUser != null) {
             uid = auth.uid.toString()
         }
-        //テスト用のID代入
-        uid = "6BioaJRzzhNkBgaHP2boi9W7HGF2"
+//        //テスト用のID代入
+//        uid = "6BioaJRzzhNkBgaHP2boi9W7HGF2"
 
         /*
         選択された欲しいものの表示をする

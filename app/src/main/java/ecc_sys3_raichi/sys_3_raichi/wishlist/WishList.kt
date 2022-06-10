@@ -60,8 +60,8 @@ class WishList : Fragment() {
         if (currentUser != null) {
             uid = auth.uid.toString()
         }
-        //テスト用のID代入
-        uid = "6BioaJRzzhNkBgaHP2boi9W7HGF2"
+//        //テスト用のID代入
+//        uid = "6BioaJRzzhNkBgaHP2boi9W7HGF2"
 
         //どのユーザーでログインしているかを取得する
         user_name = "父"
