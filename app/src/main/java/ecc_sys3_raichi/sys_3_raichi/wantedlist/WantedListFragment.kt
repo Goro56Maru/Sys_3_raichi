@@ -132,7 +132,7 @@ class WantedListFragment : Fragment() {
         db.collection("user").document(uid).collection("list").get().addOnSuccessListener {
             ListView.clear()
             for (i in it){
-                var setList = WantedListData(i.id, i.data["list_name"] as String,i.data["list_money"].toString().toInt(),i.data["list_prop"]as String,0)
+                var setList = WantedListData(i.id, i.data["list_name"] as String,i.data["list_money"].toString().toInt(),i.data["list_prop"]as String,i.data["list_priority"].toString().toInt(),i.data["list_comment"] as String)
                 ListView.add(setList)
                 adapter.notifyDataSetChanged()
             }

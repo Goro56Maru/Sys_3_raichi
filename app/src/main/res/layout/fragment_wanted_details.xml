@@ -29,7 +29,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/textView4"
+                    android:id="@+id/Priorityinfo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -66,7 +66,7 @@
                 android:textSize="24sp" />
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/Propinfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="提案者"
@@ -101,7 +101,7 @@
 
 
             <TextView
-                android:id="@+id/textView9"
+                android:id="@+id/Commentinfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="提案者コメント" />
@@ -109,7 +109,8 @@
             <TextView
                 android:id="@+id/PropComment"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:textSize="20sp" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
