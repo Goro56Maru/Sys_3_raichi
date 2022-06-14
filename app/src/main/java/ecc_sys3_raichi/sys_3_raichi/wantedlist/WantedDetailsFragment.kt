@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
+import android.widget.ProgressBar
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
@@ -69,7 +70,7 @@ class WantedDetailsFragment : Fragment() {
         WantedListFragmentから選択された欲しいもののIDを取得して
         データベースから詳細情報を取得して表示する。
         */
-        Displaychange(false,android.widget.TextView.INVISIBLE)
+        Displaychange(false, android.widget.TextView.INVISIBLE, android.widget.ProgressBar.VISIBLE)
         GlobalScope.launch {
             val job = launch {
                 ViewUpdate()
@@ -77,7 +78,6 @@ class WantedDetailsFragment : Fragment() {
             delay(3000)
             job.cancel()
         }
-
 
         //spinnerを押した時の処理
         binding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
@@ -116,22 +116,23 @@ class WantedDetailsFragment : Fragment() {
             binding.Proponent.text = it["list_prop"].toString() //欲しいものの提案者名
             binding.PropComment.text = it["list_comment"].toString() //欲しいものの投稿者コメント
 
-            Displaychange(true,android.widget.TextView.VISIBLE)
+            Displaychange(true, android.widget.TextView.VISIBLE, ProgressBar.INVISIBLE)
         }.addOnFailureListener {
             Toast.makeText(context, "情報の取得に失敗しました", Toast.LENGTH_SHORT).show()
         }
     }
 
     //表示されているボタンやテキストを有効(true)・無効(false)状態に変更する関数
-    private fun Displaychange(display: Boolean, invisible: Int) {
-        binding.WantedName.visibility = invisible
-        binding.WantedMoney.visibility = invisible
-        binding.Priorityinfo.visibility = invisible
-        binding.Priority.visibility = invisible
-        binding.Propinfo.visibility = invisible
-        binding.Proponent.visibility = invisible
-        binding.Commentinfo.visibility = invisible
-        binding.PropComment.visibility = invisible
+    private fun Displaychange(display: Boolean, visible: Int, proginv: Int) {
+        binding.progressBar2.visibility = proginv
+        binding.WantedName.visibility = visible
+        binding.WantedMoney.visibility = visible
+        binding.Priorityinfo.visibility = visible
+        binding.Priority.visibility = visible
+        binding.Propinfo.visibility = visible
+        binding.Proponent.visibility = visible
+        binding.Commentinfo.visibility = visible
+        binding.PropComment.visibility = visible
         binding.button.isEnabled = display
     }
 

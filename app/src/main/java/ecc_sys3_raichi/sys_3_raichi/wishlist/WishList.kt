@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
@@ -83,7 +84,7 @@ class WishList : Fragment() {
                 list_comment = binding.wishcomment.text.toString()
 
                 //Firestoreに登録中する際に関数を呼び出し、ボタン等を押せない状態にしておく
-                Displaychange(false)
+                Displaychange(false,android.widget.ProgressBar.VISIBLE)
                 GlobalScope.launch {
                     val job = launch {
                         //登録処理を行う関数を呼び出す
@@ -93,7 +94,7 @@ class WishList : Fragment() {
                     job.cancel()
                 }
                 //登録処理の終了後に関数を呼び出し、ボタン等を押せる状態にする
-                Displaychange(true)
+                Displaychange(true, android.widget.ProgressBar.INVISIBLE)
             }
         }
         return view
@@ -126,7 +127,8 @@ class WishList : Fragment() {
     }
 
     //表示されているボタンやテキストを有効(true)・無効(false)状態に変更する関数
-    private fun Displaychange(display: Boolean) {
+    private fun Displaychange(display: Boolean, visible: Int) {
+        binding.progressBar3.visibility = visible
         binding.wishname.isEnabled = display
         binding.wishmoney.isEnabled = display
         binding.wishaddalert.isEnabled = display

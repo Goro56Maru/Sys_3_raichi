@@ -78,6 +78,8 @@ class WantedListFragment : Fragment() {
 //        }
 
 
+        binding.progressBar.visibility = android.widget.ProgressBar.VISIBLE
+        binding.recyclerView.visibility = android.widget.ListView.INVISIBLE
         ListView.clear()    //リスト表示前にデータを空にしておく
         GlobalScope.launch {
             val job = launch {
@@ -86,6 +88,7 @@ class WantedListFragment : Fragment() {
             delay(3000)
             job.cancel()
         }
+
 
         //データが更新されるたびに表示を更新する
         db.collection("user").document(uid).collection("list")
@@ -96,6 +99,8 @@ class WantedListFragment : Fragment() {
                 }
                 //更新があるとき表示を更新
                 if (snapshots != null){
+                    binding.progressBar.visibility = android.widget.ProgressBar.VISIBLE
+                    binding.recyclerView.visibility = android.widget.ListView.INVISIBLE
                     GlobalScope.launch {
                         val job = launch {
                             ListViewUpdate()
@@ -136,6 +141,8 @@ class WantedListFragment : Fragment() {
                 ListView.add(setList)
                 adapter.notifyDataSetChanged()
             }
+            binding.progressBar.visibility = android.widget.ProgressBar.INVISIBLE
+            binding.recyclerView.visibility = android.widget.ListView.VISIBLE
         }.addOnFailureListener {
 
         }
