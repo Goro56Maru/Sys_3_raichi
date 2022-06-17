@@ -51,7 +51,7 @@ class MemberAdd: Fragment(R.layout.fragment_member_add) {
             Toast.makeText(activity, "name = " + name , Toast.LENGTH_SHORT).show()
 
 
-            db.collection("user").document("afpI2ox0kncgRtbxY5S2").update("users",FieldValue.arrayUnion("aaa")).addOnSuccessListener {
+            db.collection("user").document("afpI2ox0kncgRtbxY5S2").update("users",FieldValue.arrayUnion(name)).addOnSuccessListener {
                 Toast.makeText(activity, "url = p" , Toast.LENGTH_SHORT).show()
             }
 //            //val ref = db.collection("user").document("afpI2ox0kncgRtbxY5S2")
