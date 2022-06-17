@@ -1,60 +1,50 @@
 package ecc_sys3_raichi.sys_3_raichi.wantedlist
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import android.widget.TextView
+import android.widget.Toast
+import androidx.fragment.app.Fragment
 import ecc_sys3_raichi.sys_3_raichi.R
+import kotlinx.android.synthetic.main.fragment_income_spending_.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [IncomeSpending_Fragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class IncomeSpending_Fragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+class IncomeSpending_Fragment : Fragment(R.layout.fragment_income_spending_) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+        saveButton.setOnClickListener{
+
+            val remaining = remainingCheck()
+
+            val textView = TextView(activity)
+            textView.text = remaining.toString()
+            textView.textSize = 30f
+
+            text_ll.addView(textView)
         }
     }
+    fun remainingCheck(): Int {
+        try {
+            //収入
+            val income = income_text.text.toString().trim()
+            //支出
+            val spend = spend_text.text.toString().trim()
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_income_spending_, container, false)
-    }
+            //使えるお金
+            val remaining = (income.toInt() - spend.toInt())
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment IncomeSpending_Fragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            IncomeSpending_Fragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+            if(remaining > 0){
+                return remaining
             }
+            Toast.makeText(activity, "使えるお金はありません", Toast.LENGTH_SHORT).show()
+            return 0
+        }catch(e: NumberFormatException){
+            Toast.makeText(activity, "正しく入力してください", Toast.LENGTH_SHORT).show()
+        }
+        return 0
     }
 }
