@@ -18,7 +18,6 @@
 <!--             </intent-filter>-->
 
         </activity>
-        <activity android:name=".login.Login"></activity>
         <activity android:name=".user.usercheck" />
         <activity android:name=".MainActivity" />
         <activity
@@ -32,12 +31,11 @@
         <activity android:name=".user.useradd" />
         <activity
             android:name=".login.Login">
-<!--             <intent-filter>-->
-<!--             <action android:name="android.intent.action.MAIN" />-->
-<!--             <category android:name="android.intent.category.LAUNCHER" />-->
-<!--             </intent-filter>-->
+             <intent-filter>
+             <action android:name="android.intent.action.MAIN" />
+             <category android:name="android.intent.category.LAUNCHER" />
+             </intent-filter>
         </activity>
-        <activity android:name=".user.useradd" />
         <activity
             android:name=".SplashActivity"
             android:exported="true">
