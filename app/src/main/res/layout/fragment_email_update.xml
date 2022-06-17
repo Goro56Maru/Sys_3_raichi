@@ -4,32 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".login.Register">
-
+    tools:context=".setting.EmailUpdateFragment">
 
     <TextView
         android:id="@+id/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="24dp"
         android:gravity="center"
-        android:text="アカウント作成"
+        android:text="メールアドレス変更"
         android:textSize="25dp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/old_email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/email"
+        android:id="@+id/old_email"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:layout_marginStart="65dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="65dp"
-        android:hint="メール"
+        android:hint="現在のメールアドレス"
         app:endIconMode="clear_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,7 +37,7 @@
         app:startIconDrawable="@drawable/mail">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/email_text"
+            android:id="@+id/old_email_text"
             android:layout_width="match_parent"
             android:layout_height="49dp"
             android:inputType="textEmailAddress"
@@ -45,71 +45,79 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/pass"
+        android:id="@+id/new_email"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="65dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="65dp"
-        android:drawableStart="@drawable/lock"
-        android:hint="パスワード"
-        app:counterEnabled="true"
-        app:counterMaxLength="20"
-        app:endIconMode="password_toggle"
+        android:hint="新しいメールアドレス"
+        app:endIconMode="clear_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email"
-        app:startIconDrawable="@drawable/lock">
+        app:layout_constraintTop_toBottomOf="@id/old_email"
+        app:startIconDrawable="@drawable/mail">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/pass_text"
+            android:id="@+id/new_email_text"
             android:layout_width="match_parent"
             android:layout_height="49dp"
-            android:inputType="textPassword"
-            android:maxLength="20"
-            android:textSize="15sp" />
+            android:inputType="textEmailAddress"
+            android:textSize="15dp" />
+
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/again_pass"
+        android:id="@+id/again_new_email"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="65dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="65dp"
-        android:drawableStart="@drawable/lock"
-        android:hint="パスワード再入力"
-        app:counterEnabled="true"
-        app:counterMaxLength="20"
-        app:endIconMode="password_toggle"
+        android:hint="新しいメールアドレス(再入力)"
+        app:endIconMode="clear_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pass"
-        app:startIconDrawable="@drawable/lock">
+        app:layout_constraintTop_toBottomOf="@id/new_email"
+        app:startIconDrawable="@drawable/mail">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/again_pass_text"
+            android:id="@+id/again_new_email_text"
             android:layout_width="match_parent"
             android:layout_height="49dp"
-            android:textSize="15dp"
-            android:inputType="textPassword"
-            android:maxLength="20" />
+            android:inputType="textEmailAddress"
+            android:textSize="15dp" />
+
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/addbutton"
+        android:id="@+id/update_button"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="アカウント作成"
+        android:layout_marginTop="64dp"
         android:background="@drawable/border"
+        android:text="変更"
+        app:layout_constraintBottom_toTopOf="@+id/back_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/again_pass" />
+        app:layout_constraintTop_toBottomOf="@id/again_new_email" />
+
+    <Button
+        android:id="@+id/back_button"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/border"
+        android:text="戻る"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/update_button" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

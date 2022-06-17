@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/setting_tab_navigation"
+    app:startDestination="@id/settings">
+
+    <fragment
+        android:id="@+id/settings"
+        android:name="ecc_sys3_raichi.sys_3_raichi.setting.Settings"
+        android:label="Settings" >
+        <action
+            android:id="@+id/action_settings_to_passwordUpdateFragment"
+            app:destination="@id/passwordUpdateFragment" />
+        <action
+            android:id="@+id/action_settings_to_emailUpdateFragment"
+            app:destination="@id/emailUpdateFragment" />
+        <action
+            android:id="@+id/action_settings_to_memberSetting"
+            app:destination="@id/memberSetting" />
+        <action
+            android:id="@+id/action_settings_to_notifSetting"
+            app:destination="@id/notifSetting" />
+    </fragment>
+    <fragment
+        android:id="@+id/notifSetting"
+        android:name="ecc_sys3_raichi.sys_3_raichi.setting.NotifSetting"
+        android:label="NotifSetting" >
+        <action
+            android:id="@+id/action_notifSetting_to_settings"
+            app:destination="@id/settings" />
+    </fragment>
+    <fragment
+        android:id="@+id/memberSetting"
+        android:name="ecc_sys3_raichi.sys_3_raichi.setting.MemberSetting"
+        android:label="MemberSetting" >
+        <action
+            android:id="@+id/action_memberSetting_to_settings"
+            app:destination="@id/settings" />
+    </fragment>
+    <fragment
+        android:id="@+id/emailUpdateFragment"
+        android:name="ecc_sys3_raichi.sys_3_raichi.setting.EmailUpdateFragment"
+        android:label="fragment_email_update"
+        tools:layout="@layout/fragment_email_update" >
+        <action
+            android:id="@+id/action_emailUpdateFragment_to_settings"
+            app:destination="@id/settings" />
+    </fragment>
+    <fragment
+        android:id="@+id/passwordUpdateFragment"
+        android:name="ecc_sys3_raichi.sys_3_raichi.setting.PasswordUpdateFragment"
+        android:label="fragment_password_update"
+        tools:layout="@layout/fragment_password_update" >
+        <action
+            android:id="@+id/action_passwordUpdateFragment_to_settings"
+            app:destination="@id/settings" />
+    </fragment>
+</navigation>

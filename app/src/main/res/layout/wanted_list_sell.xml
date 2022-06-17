@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="12dp"
+    android:layout_margin="8dp"
     android:layout_weight="1"
-    android:elevation="15dp"
+    android:elevation="9dp"
     tools:layout_editor_absoluteX="5dp"
     tools:layout_editor_absoluteY="5dp">
 
@@ -22,7 +22,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/Priorityinfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -59,7 +59,7 @@
             android:textSize="24sp" />
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/Propinfo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="提案者"

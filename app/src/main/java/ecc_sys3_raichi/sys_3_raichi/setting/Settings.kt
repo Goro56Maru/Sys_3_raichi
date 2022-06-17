@@ -9,14 +9,24 @@ import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import ecc_sys3_raichi.sys_3_raichi.MainActivity
 import ecc_sys3_raichi.sys_3_raichi.R
 import kotlinx.android.synthetic.main.fragment_settings.*
 
 class Settings : Fragment(R.layout.fragment_settings) {
 
-    private val dataArray = arrayOf("アカウント設定", "メンバー設定", "通知", "ログアウト", "アカウント削除")
-    private val jump = arrayOf(MainActivity(), MemberSetting(), NotifSetting())
+    private val dataArray = arrayOf("メールアドレス設定","パスワード設定", "メンバー設定", "通知", "ログアウト", "アカウント削除")
+    private val jump = arrayOf(R.id.action_settings_to_emailUpdateFragment,
+                                R.id.action_settings_to_passwordUpdateFragment,
+                                R.id.action_settings_to_memberSetting,
+                                R.id.action_settings_to_notifSetting,)
+
+    // [START declare_auth]
+    private lateinit var auth: FirebaseAuth
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
@@ -24,8 +34,11 @@ class Settings : Fragment(R.layout.fragment_settings) {
         listView.onItemClickListener =
             AdapterView.OnItemClickListener { parent, view, position, id ->
                 Toast.makeText(activity, "position = " + position, Toast.LENGTH_SHORT).show()
+                if (position == 4) auth.signOut()
+                else if (position > 4){}
+                else findNavController().navigate(jump[position])
 
-                replaceFragment(jump[position] as Fragment)
+//                replaceFragment(jump[position] as Fragment)
             }
     }
 
@@ -38,6 +51,13 @@ class Settings : Fragment(R.layout.fragment_settings) {
 
         val adapter = ArrayAdapter<String>(requireContext(), R.layout.txt_design, dataArray)
         listView.adapter = adapter
+
+        //ログインユーザーのIDを取得する
+        auth = Firebase.auth
+        val currentUser = auth.currentUser
+        if (currentUser != null) {
+
+        }
 
         return mainFrame
     }
