@@ -108,7 +108,8 @@ class WishList : Fragment() {
             "list_money" to list_money,
             "list_comment" to list_comment,
             "list_prop" to user_name,
-            "list_priority" to 0
+            "list_priority" to 0,
+            "purchased" to false
         )
 
         //FireStoreへの登録処理
