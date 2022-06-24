@@ -57,10 +57,10 @@ class WantedListFragment : Fragment() {
         val currentUser = auth.currentUser
         if (currentUser != null) {
             uid = auth.uid.toString()
+        }else{
+            //テスト用のID代入
+            uid = "6BioaJRzzhNkBgaHP2boi9W7HGF2"
         }
-
-        //テスト用のID代入
-        uid = "6BioaJRzzhNkBgaHP2boi9W7HGF2"
 
         //リスト表示のためのrecyclerView設定
         val linearLayoutManager = LinearLayoutManager(view.context)
