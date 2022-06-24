@@ -42,6 +42,7 @@ class WantedDetailsFragment : Fragment() {
     //ログインユーザーのID
     private var uid = ""
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -91,6 +92,13 @@ class WantedDetailsFragment : Fragment() {
             }
         }
 
+        //購入済みボタンが押された時の処理
+        binding.button.setOnClickListener {
+            Purchased()
+
+            findNavController().navigate(R.id.action_wantedDetailsFragment_to_wantedListFragment)
+        }
+
 
         //投票ボタンが押された時の処理
         binding.button.setOnClickListener {
@@ -134,6 +142,17 @@ class WantedDetailsFragment : Fragment() {
         binding.Commentinfo.visibility = visible
         binding.PropComment.visibility = visible
         binding.button.isEnabled = display
+    }
+
+
+    private fun Purchased(){
+        db.collection("user").document(uid).collection("list").document(LISTID).update("purchased",true)
+            .addOnSuccessListener {
+                Toast.makeText(context,"updateにしました", Toast.LENGTH_SHORT).show()
+            }.addOnFailureListener{
+                //登録が失敗した時、Toastを表示する
+                Toast.makeText(context,"updateに失敗しました", Toast.LENGTH_SHORT).show()
+            }
     }
 
     companion object {
