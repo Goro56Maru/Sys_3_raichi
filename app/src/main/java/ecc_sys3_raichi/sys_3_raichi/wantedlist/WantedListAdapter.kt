@@ -34,7 +34,8 @@ class WantedListAdapter (private val WantedListData: MutableList<WantedListData>
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         holder.ListName.text = WantedListData[position].ListName
         holder.Money.text = WantedListData[position].ListMoney.toString()+"円"
-        holder.Priority.text = WantedListData[position].ListPriority.toString()
+//        holder.Priority.text = WantedListData[position].ListPriority.toString()
+        holder.Priority.text = (position + 1).toString()
         holder.Proponent.text = WantedListData[position].ListProp
         holder.itemView.setOnClickListener {
             listener.onItemClickListener(it, position, WantedListData[position])
