@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import ecc_sys3_raichi.sys_3_raichi.R
@@ -57,10 +58,10 @@ class WantedListFragment : Fragment() {
         val currentUser = auth.currentUser
         if (currentUser != null) {
             uid = auth.uid.toString()
+        }else{
+            //テスト用のID代入
+            uid = "6BioaJRzzhNkBgaHP2boi9W7HGF2"
         }
-
-        //テスト用のID代入
-        uid = "6BioaJRzzhNkBgaHP2boi9W7HGF2"
 
         //リスト表示のためのrecyclerView設定
         val linearLayoutManager = LinearLayoutManager(view.context)
@@ -131,11 +132,14 @@ class WantedListFragment : Fragment() {
     }
 
     private fun ListViewUpdate(){
-        db.collection("user").document(uid).collection("list").get().addOnSuccessListener {
+        db.collection("user").document(uid).collection("list").whereEqualTo("purchased",false).get().addOnSuccessListener {
             ListView.clear()
+            var count = 0
             for (i in it){
+                count += 1
                 var setList = WantedListData(i.id, i.data["list_name"] as String,i.data["list_money"].toString().toInt(),i.data["list_prop"]as String,i.data["list_priority"].toString().toInt(),i.data["list_comment"] as String)
                 ListView.add(setList)
+                ListView.sortByDescending { it.ListPriority }
                 adapter.notifyDataSetChanged()
             }
             binding.progressBar.visibility = android.widget.ProgressBar.INVISIBLE
