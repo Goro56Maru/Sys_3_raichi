@@ -15,7 +15,6 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import ecc_sys3_raichi.sys_3_raichi.R
 import ecc_sys3_raichi.sys_3_raichi.databinding.FragmentWantedDetailsBinding
-import kotlinx.android.synthetic.main.fragment_wanted_details.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -117,10 +116,8 @@ class WantedDetailsFragment : Fragment() {
         }
 
         //購入済みボタンが押された時の処理
-        binding.button.setOnClickListener {
+        binding.purchasedButton.setOnClickListener {
             Purchased()
-
-            findNavController().navigate(R.id.action_wantedDetailsFragment_to_wantedListFragment)
         }
 
 
@@ -159,7 +156,8 @@ class WantedDetailsFragment : Fragment() {
 
     //表示の更新を行う
     private fun ViewUpdate(){
-        db.collection("user").document(uid).collection("list").document(LISTID).get().addOnSuccessListener {
+        db.collection("user").document(uid).collection("list").document(LISTID).get()
+            .addOnSuccessListener {
             binding.WantedName.text = it["list_name"].toString() //欲しいものの名前
             binding.WantedMoney.text = "${it["list_money"].toString()}円" //欲しいものの金額
             binding.Priority.text = it["list_priority"].toString() //欲しいものの現在の優先順位
