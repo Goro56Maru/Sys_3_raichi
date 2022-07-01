@@ -14,6 +14,7 @@ import ecc_sys3_raichi.sys_3_raichi.R
 import ecc_sys3_raichi.sys_3_raichi.user.useradd
 import kotlinx.android.synthetic.main.activity_register.*
 import com.google.firebase.firestore.ktx.firestore
+import ecc_sys3_raichi.sys_3_raichi.HomeActivity
 
 private var ruid = ""
 private var remail = ""
@@ -93,7 +94,8 @@ class Register : AppCompatActivity() {
     private fun updateUI(user: FirebaseUser?) {
         if(user != null){
             Toast.makeText(applicationContext, "ログイン成功！ UID = $ruid", Toast.LENGTH_SHORT).show()
-            startActivity(Intent(applicationContext,useradd::class.java).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK))
+            startActivity(Intent(applicationContext,HomeActivity::class.java).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK))
+//            startActivity(Intent(applicationContext,useradd::class.java).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK))
         }else{
             signOut()
             Toast.makeText(applicationContext,"ログイン失敗！", Toast.LENGTH_SHORT).show()

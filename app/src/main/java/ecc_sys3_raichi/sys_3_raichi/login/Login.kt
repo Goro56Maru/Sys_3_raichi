@@ -10,6 +10,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import ecc_sys3_raichi.sys_3_raichi.HomeActivity
 import ecc_sys3_raichi.sys_3_raichi.R
 import ecc_sys3_raichi.sys_3_raichi.user.usercheck
 import kotlinx.android.synthetic.main.activity_login.*
@@ -78,7 +79,8 @@ class Login : AppCompatActivity() {
     private fun updateUI(user: FirebaseUser?) {
         if(user != null){
             Toast.makeText(applicationContext,"ログイン成功！", Toast.LENGTH_SHORT).show()
-            startActivity(Intent(applicationContext,usercheck::class.java).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK))
+            startActivity(Intent(applicationContext,HomeActivity::class.java).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK))
+//            startActivity(Intent(applicationContext,usercheck::class.java).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK))
         }else{
             signOut()
             Toast.makeText(applicationContext,"ログイン失敗！", Toast.LENGTH_SHORT).show()
