@@ -40,13 +40,6 @@
         <activity
             android:name=".testActivity"
             android:exported="true">
-
-
-        <activity android:name=".PurchasedList"></activity>
-        <activity
-            android:name=".testActivity"
-            android:exported="true">
-
             <!-- <intent-filter> -->
             <!-- <action android:name="android.intent.action.MAIN" /> -->
             <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
