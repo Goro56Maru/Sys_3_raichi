@@ -60,9 +60,10 @@ class WishList : Fragment() {
         val currentUser = auth.currentUser
         if (currentUser != null) {
             uid = auth.uid.toString()
+        }else{
+            //テスト用のID代入
+            uid = "6BioaJRzzhNkBgaHP2boi9W7HGF2"
         }
-        //テスト用のID代入
-        uid = "6BioaJRzzhNkBgaHP2boi9W7HGF2"
 
         //どのユーザーでログインしているかを取得する
         user_name = "父"
@@ -108,7 +109,9 @@ class WishList : Fragment() {
             "list_money" to list_money,
             "list_comment" to list_comment,
             "list_prop" to user_name,
-            "list_priority" to 0
+            "list_priority" to 0,
+            "purchased" to false,
+            "voter" to hashMapOf<String,Int>()
         )
 
         //FireStoreへの登録処理

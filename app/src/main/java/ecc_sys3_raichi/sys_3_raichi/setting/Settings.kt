@@ -1,5 +1,6 @@
 package ecc_sys3_raichi.sys_3_raichi.setting
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +16,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import ecc_sys3_raichi.sys_3_raichi.MainActivity
 import ecc_sys3_raichi.sys_3_raichi.R
+import ecc_sys3_raichi.sys_3_raichi.login.Login
 import kotlinx.android.synthetic.main.fragment_settings.*
 
 class Settings : Fragment(R.layout.fragment_settings) {
@@ -30,16 +32,16 @@ class Settings : Fragment(R.layout.fragment_settings) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        //listViewから選択されたとき
-        listView.onItemClickListener =
-            AdapterView.OnItemClickListener { parent, view, position, id ->
-                Toast.makeText(activity, "position = " + position, Toast.LENGTH_SHORT).show()
-                if (position == 4) auth.signOut()
-                else if (position > 4){}
-                else findNavController().navigate(jump[position])
-
-//                replaceFragment(jump[position] as Fragment)
-            }
+//        //listViewから選択されたとき
+//        listView.onItemClickListener =
+//            AdapterView.OnItemClickListener { parent, view, position, id ->
+//                Toast.makeText(activity, "position = " + position, Toast.LENGTH_SHORT).show()
+//                if (position == 4) auth.signOut()
+//                else if (position > 4){}
+//                else findNavController().navigate(jump[position])
+//
+////                replaceFragment(jump[position] as Fragment)
+//            }
     }
 
     //設定のHOME画面 listView作成
@@ -59,6 +61,16 @@ class Settings : Fragment(R.layout.fragment_settings) {
 
         }
 
+        //listViewから選択されたとき
+        listView.onItemClickListener =
+            AdapterView.OnItemClickListener { parent, view, position, id ->
+                Toast.makeText(activity, "position = " + position, Toast.LENGTH_SHORT).show()
+                if (position == 4) SignOut()
+                else if (position == 5) SignOut()
+                else if (position < 4) findNavController().navigate(jump[position])
+//                replaceFragment(jump[position] as Fragment)
+            }
+
         return mainFrame
     }
 
@@ -66,5 +78,10 @@ class Settings : Fragment(R.layout.fragment_settings) {
         parentFragmentManager.beginTransaction()
             .replace(R.id.fragmentContainer,fragment)
             .commit()
+    }
+    private fun SignOut(){
+        auth.signOut()
+        Toast.makeText(context,"ログアウトしました。", Toast.LENGTH_SHORT).show()
+        startActivity(Intent(context, Login::class.java).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK))
     }
 }
