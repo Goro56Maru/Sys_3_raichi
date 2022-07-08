@@ -33,7 +33,7 @@ class CloudMessagingActivity : AppCompatActivity() {
 
                 val msg = "InstanceID Token: $token"
                 Timber.d(msg)
-                Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
+                //Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
             })
 
     }
