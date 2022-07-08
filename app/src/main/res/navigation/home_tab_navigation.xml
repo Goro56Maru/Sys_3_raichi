@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_wantedTabFragment_to_wishList"
             app:destination="@id/wishList" />
+        <action
+            android:id="@+id/action_wantedTabFragment_to_purchasedTabFragment"
+            app:destination="@id/purchasedTabFragment" />
     </fragment>
     <fragment
         android:id="@+id/settingTabFragment"
@@ -28,6 +31,9 @@
         <action
             android:id="@+id/action_settingTabFragment_to_wantedTabFragment"
             app:destination="@id/wantedTabFragment" />
+        <action
+            android:id="@+id/action_settingTabFragment_to_purchasedTabFragment"
+            app:destination="@id/purchasedTabFragment" />
     </fragment>
     <fragment
         android:id="@+id/wishList"
@@ -39,6 +45,24 @@
             app:destination="@id/settingTabFragment" />
         <action
             android:id="@+id/action_wishList_to_wantedTabFragment"
+            app:destination="@id/wantedTabFragment" />
+        <action
+            android:id="@+id/action_wishList_to_purchasedTabFragment"
+            app:destination="@id/purchasedTabFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/purchasedTabFragment"
+        android:name="ecc_sys3_raichi.sys_3_raichi.purchased.PurchasedTabFragment"
+        android:label="fragment_purchased_tab"
+        tools:layout="@layout/fragment_purchased_tab" >
+        <action
+            android:id="@+id/action_purchasedTabFragment_to_wishList"
+            app:destination="@id/wishList" />
+        <action
+            android:id="@+id/action_purchasedTabFragment_to_settingTabFragment"
+            app:destination="@id/settingTabFragment" />
+        <action
+            android:id="@+id/action_purchasedTabFragment_to_wantedTabFragment"
             app:destination="@id/wantedTabFragment" />
     </fragment>
 </navigation>

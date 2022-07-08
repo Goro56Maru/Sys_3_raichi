@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="voting_array">
+        <item>　０点</item>
+        <item>　１点 </item>
+        <item>　２点 </item>
+        <item>　３点 </item>
+        <item>　４点 </item>
+        <item>　５点 </item>
+        <item>　６点 </item>
+        <item>　７点 </item>
+        <item>　８点 </item>
+        <item>　９点 </item>
+        <item>１０点 </item>
+    </string-array>
+    <string-array name="voting_array2">
+        <item>すぐにでも買いたい</item>
+        <item>すぐでなくても買いたい</item>
+        <item>できれば買いたい</item>
+        <item>そこまで買いたいとは思わない</item>
+        <item>買いたいと思わない</item>
+    </string-array>
+</resources>

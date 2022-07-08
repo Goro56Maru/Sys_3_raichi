@@ -1,17 +1,16 @@
 package ecc_sys3_raichi.sys_3_raichi.wantedlist
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ProgressBar
-import android.widget.Spinner
-import android.widget.Toast
+import android.widget.*
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import ecc_sys3_raichi.sys_3_raichi.R
@@ -33,7 +32,7 @@ class WantedDetailsFragment : Fragment() {
     private val spinnerItems = arrayOf("1番","2番","3番","4番","5番","6番","7番","8番","9番","10番")
 
     //選択されている優先順位を格納する変数
-    private var selectItem = ""
+    private var selectItem = 0
 
     // [START declare_auth]
     private lateinit var auth: FirebaseAuth
@@ -67,6 +66,18 @@ class WantedDetailsFragment : Fragment() {
             uid = "6BioaJRzzhNkBgaHP2boi9W7HGF2"
         }
 
+        var USERSID = "K0hyhEtEFCafKMmWPJoL"
+
+        ArrayAdapter.createFromResource(
+            requireContext(),
+            R.array.voting_array2,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            // Specify the layout to use when the list of choices appears
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            // Apply the adapter to the spinner
+            binding.spinner.adapter = adapter
+        }
 
         /*
         選択された欲しいものの表示をする
@@ -82,12 +93,22 @@ class WantedDetailsFragment : Fragment() {
             job.cancel()
         }
 
+
         //spinnerを押した時の処理
         binding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long, ) {
                 val spinnerParent = parent as Spinner
-                val item = spinnerParent.selectedItem as String
-                selectItem = item
+                val itemName = spinnerParent.selectedItem as String
+                val item = spinnerParent.selectedItemPosition
+                when (item) {
+                    0 -> selectItem = 5
+                    1 -> selectItem = 4
+                    2 -> selectItem = 3
+                    3 -> selectItem = 2
+                    4 -> selectItem = 1
+                }
+
+//                Toast.makeText(context, "$itemName \n $selectItem", Toast.LENGTH_SHORT).show()
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -95,17 +116,36 @@ class WantedDetailsFragment : Fragment() {
         }
 
         //購入済みボタンが押された時の処理
-        binding.button.setOnClickListener {
+        binding.purchasedButton.setOnClickListener {
             Purchased()
-
-            findNavController().navigate(R.id.action_wantedDetailsFragment_to_wantedListFragment)
         }
 
 
         //投票ボタンが押された時の処理
         binding.button.setOnClickListener {
-            //確認用Toast
-            Toast.makeText(context, "${selectItem}", Toast.LENGTH_SHORT).show()
+            try {
+                db.collection("user").document(uid).get().addOnSuccessListener {
+                    Toast.makeText(context, "${it["users"]}", Toast.LENGTH_SHORT).show()
+                }
+//                Displaychange(false, android.widget.TextView.INVISIBLE, android.widget.ProgressBar.VISIBLE)
+//                db.collection("user").document(uid).collection("list").document(LISTID).update("voter.${USERSID}",selectItem).addOnSuccessListener {
+//                    db.collection("user").document(uid).collection("list").document(LISTID).get()
+//                        .addOnSuccessListener { document ->
+//                            var pri = 0
+//                            var vot_data = document.data?.get("voter") as HashMap<*,*>
+//                            vot_data.values.forEach {
+//                                pri += it.toString().toInt()
+//                            }
+//                            db.collection("user").document(uid).collection("list").document(LISTID).update("list_priority",pri).addOnSuccessListener {
+//                                Displaychange(true, android.widget.TextView.VISIBLE, ProgressBar.INVISIBLE)
+//                                Toast.makeText(context, "${pri}\n${vot_data}", Toast.LENGTH_SHORT).show()
+//                            }
+//                        }
+//                }
+            }catch (e: Exception){
+                Displaychange(true, android.widget.TextView.VISIBLE, ProgressBar.INVISIBLE)
+                Toast.makeText(context, "投票に失敗しました", Toast.LENGTH_SHORT).show()
+            }
         }
 
 
@@ -119,7 +159,8 @@ class WantedDetailsFragment : Fragment() {
 
     //表示の更新を行う
     private fun ViewUpdate(){
-        db.collection("user").document(uid).collection("list").document(LISTID).get().addOnSuccessListener {
+        db.collection("user").document(uid).collection("list").document(LISTID).get()
+            .addOnSuccessListener {
             binding.WantedName.text = it["list_name"].toString() //欲しいものの名前
             binding.WantedMoney.text = "${it["list_money"].toString()}円" //欲しいものの金額
             binding.Priority.text = it["list_priority"].toString() //欲しいものの現在の優先順位

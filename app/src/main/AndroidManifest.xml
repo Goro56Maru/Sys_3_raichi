@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Sys_3_raichi">
+
         <activity android:name=".SplashActivity"></activity>
         <!--
          Set custom default icon. This is used when no icon is set for incoming notification messages.
@@ -40,6 +41,12 @@
             android:name=".testActivity"
             android:exported="true">
 
+
+        <activity android:name=".PurchasedList"></activity>
+        <activity
+            android:name=".testActivity"
+            android:exported="true">
+
             <!-- <intent-filter> -->
             <!-- <action android:name="android.intent.action.MAIN" /> -->
             <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
@@ -50,8 +57,7 @@
         <activity
             android:name=".HomeActivity"
             android:exported="true">
-
-            <!-- <intent-filter> -->
+           <!-- <intent-filter> -->
             <!-- <action android:name="android.intent.action.MAIN" /> -->
             <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
             <!-- </intent-filter> -->
@@ -60,18 +66,17 @@
         <activity
             android:name=".login.Login"
             android:exported="true">
-
             <!-- <intent-filter> -->
             <!-- <action android:name="android.intent.action.MAIN" /> -->
             <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
             <!-- </intent-filter> -->
         </activity>
+        
         <activity
             android:name=".CloudMessaging.CloudMessagingActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

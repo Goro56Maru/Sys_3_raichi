@@ -110,7 +110,8 @@ class WishList : Fragment() {
             "list_comment" to list_comment,
             "list_prop" to user_name,
             "list_priority" to 0,
-            "purchased" to false
+            "purchased" to false,
+            "voter" to hashMapOf<String,Int>()
         )
 
         //FireStoreへの登録処理

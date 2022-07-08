@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/purchased_list_tab_navigation"
+    app:startDestination="@id/purchasedListFragment2">
+
+    <fragment
+        android:id="@+id/purchasedDetailsFragment"
+        android:name="ecc_sys3_raichi.sys_3_raichi.purchased.PurchasedDetailsFragment"
+        android:label="fragment_purchased_details"
+        tools:layout="@layout/fragment_purchased_details" >
+        <action
+            android:id="@+id/action_purchasedDetailsFragment_to_purchasedListFragment2"
+            app:destination="@id/purchasedListFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/purchasedListFragment2"
+        android:name="ecc_sys3_raichi.sys_3_raichi.purchased.PurchasedListFragment"
+        android:label="fragment_purchased_list"
+        tools:layout="@layout/fragment_purchased_list" >
+        <action
+            android:id="@+id/action_purchasedListFragment2_to_purchasedDetailsFragment"
+            app:destination="@id/purchasedDetailsFragment" />
+    </fragment>
+</navigation>
