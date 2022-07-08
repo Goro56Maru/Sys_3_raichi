@@ -57,7 +57,9 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'com.google.firebase:firebase-auth-ktx'
     implementation 'com.google.firebase:firebase-firestore-ktx'
-    
+    // Cloud Messaging
+    implementation 'com.google.firebase:firebase-messaging:20.1.6'
+    implementation 'com.jakewharton.timber:timber:4.7.1'
 
     // recyclerview
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
