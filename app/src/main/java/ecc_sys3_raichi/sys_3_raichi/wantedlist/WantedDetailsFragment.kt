@@ -124,21 +124,24 @@ class WantedDetailsFragment : Fragment() {
         //投票ボタンが押された時の処理
         binding.button.setOnClickListener {
             try {
-                Displaychange(false, android.widget.TextView.INVISIBLE, android.widget.ProgressBar.VISIBLE)
-                db.collection("user").document(uid).collection("list").document(LISTID).update("voter.${USERSID}",selectItem).addOnSuccessListener {
-                    db.collection("user").document(uid).collection("list").document(LISTID).get()
-                        .addOnSuccessListener { document ->
-                            var pri = 0
-                            var vot_data = document.data?.get("voter") as HashMap<*,*>
-                            vot_data.values.forEach {
-                                pri += it.toString().toInt()
-                            }
-                            db.collection("user").document(uid).collection("list").document(LISTID).update("list_priority",pri).addOnSuccessListener {
-                                Displaychange(true, android.widget.TextView.VISIBLE, ProgressBar.INVISIBLE)
-                                Toast.makeText(context, "${pri}\n${vot_data}", Toast.LENGTH_SHORT).show()
-                            }
-                        }
+                db.collection("user").document(uid).get().addOnSuccessListener {
+                    Toast.makeText(context, "${it["users"]}", Toast.LENGTH_SHORT).show()
                 }
+//                Displaychange(false, android.widget.TextView.INVISIBLE, android.widget.ProgressBar.VISIBLE)
+//                db.collection("user").document(uid).collection("list").document(LISTID).update("voter.${USERSID}",selectItem).addOnSuccessListener {
+//                    db.collection("user").document(uid).collection("list").document(LISTID).get()
+//                        .addOnSuccessListener { document ->
+//                            var pri = 0
+//                            var vot_data = document.data?.get("voter") as HashMap<*,*>
+//                            vot_data.values.forEach {
+//                                pri += it.toString().toInt()
+//                            }
+//                            db.collection("user").document(uid).collection("list").document(LISTID).update("list_priority",pri).addOnSuccessListener {
+//                                Displaychange(true, android.widget.TextView.VISIBLE, ProgressBar.INVISIBLE)
+//                                Toast.makeText(context, "${pri}\n${vot_data}", Toast.LENGTH_SHORT).show()
+//                            }
+//                        }
+//                }
             }catch (e: Exception){
                 Displaychange(true, android.widget.TextView.VISIBLE, ProgressBar.INVISIBLE)
                 Toast.makeText(context, "投票に失敗しました", Toast.LENGTH_SHORT).show()
