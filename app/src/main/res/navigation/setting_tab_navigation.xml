@@ -37,6 +37,9 @@
         <action
             android:id="@+id/action_memberSetting_to_settings"
             app:destination="@id/settings" />
+        <action
+            android:id="@+id/action_memberSetting_to_memberAdd2"
+            app:destination="@id/memberAdd2" />
     </fragment>
     <fragment
         android:id="@+id/emailUpdateFragment"
@@ -55,5 +58,13 @@
         <action
             android:id="@+id/action_passwordUpdateFragment_to_settings"
             app:destination="@id/settings" />
+    </fragment>
+    <fragment
+        android:id="@+id/memberAdd2"
+        android:name="ecc_sys3_raichi.sys_3_raichi.setting.MemberAdd"
+        android:label="MemberAdd" >
+        <action
+            android:id="@+id/action_memberAdd2_to_memberSetting"
+            app:destination="@id/memberSetting" />
     </fragment>
 </navigation>

@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FieldValue
@@ -46,6 +47,10 @@ class MemberAdd: Fragment(R.layout.fragment_member_add) {
 
             //replaceFragment(MemberSetting())
         }
+
+        back_button3.setOnClickListener {
+            findNavController().navigate(R.id.action_memberAdd2_to_memberSetting)
+        }
     }
 
     //firebaseに追加する
@@ -59,8 +64,8 @@ class MemberAdd: Fragment(R.layout.fragment_member_add) {
         }
 
         //テスト用のID代入
-        uid = "afpI2ox0kncgRtbxY5S2"
-        user_name = "息子B"
+//        uid = "afpI2ox0kncgRtbxY5S2"
+//        user_name = "息子B"
 
         var userData = hashMapOf(
             "name" to name,

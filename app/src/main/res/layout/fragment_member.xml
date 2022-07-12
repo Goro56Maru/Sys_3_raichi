@@ -18,8 +18,10 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView2"
-        android:layout_width="350dp"
-        android:layout_height="500dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/memberEdit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -28,20 +30,30 @@
         android:id="@+id/memberEdit"
         android:layout_width="125dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
+        android:layout_margin="5dp"
         android:text="メンバー編集"
-        app:layout_constraintBottom_toTopOf="@+id/memberAdd"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/back_button2"
+        app:layout_constraintEnd_toStartOf="@+id/memberAdd"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/memberAdd"
         android:layout_width="125dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="28dp"
+        android:layout_margin="5dp"
+        android:layout_marginStart="80dp"
         android:text="メンバー追加"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/back_button2"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/memberEdit" />
+
+    <Button
+        android:id="@+id/back_button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:text="戻る"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
 

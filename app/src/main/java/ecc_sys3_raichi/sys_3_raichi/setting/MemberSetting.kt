@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import ecc_sys3_raichi.sys_3_raichi.R
@@ -51,9 +52,6 @@ class MemberSetting: Fragment(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        memberAdd.setOnClickListener{
-            replaceFragment(MemberAdd())
-        }
     }
 
     //設定のHOME画面 listView作成
@@ -63,8 +61,15 @@ class MemberSetting: Fragment(){
         _binding = FragmentMemberBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        uid = "afpI2ox0kncgRtbxY5S2"
-        user_name = "息子B"
+
+        //ログインユーザーのIDを取得する
+        auth = Firebase.auth
+        val currentUser = auth.currentUser
+        if (currentUser != null) {
+            uid = auth.uid.toString()
+        }
+//        uid = "afpI2ox0kncgRtbxY5S2"
+//        user_name = "息子B"
 
         //リスト表示のためのrecyclerView設定
         val linearLayoutManager = LinearLayoutManager(view.context)
@@ -100,6 +105,15 @@ class MemberSetting: Fragment(){
                 Toast.makeText(activity, "${clickedText.name}", Toast.LENGTH_SHORT).show()
             }
         })
+
+
+        binding.memberAdd.setOnClickListener {
+            findNavController().navigate(R.id.action_memberSetting_to_memberAdd2)
+        }
+
+        binding.backButton2.setOnClickListener {
+            findNavController().navigate(R.id.action_memberSetting_to_settings)
+        }
 
         return view
     }
