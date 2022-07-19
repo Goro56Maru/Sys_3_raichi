@@ -46,7 +46,7 @@
             android:layout_gravity="center"
             android:text="欲しいものの名前"
             android:textAlignment="center"
-            android:textSize="34sp"
+            android:textSize="24sp"
             android:textStyle="bold" />
 
         <TextView

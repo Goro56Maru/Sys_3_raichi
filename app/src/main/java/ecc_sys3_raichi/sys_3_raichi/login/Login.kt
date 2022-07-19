@@ -79,8 +79,8 @@ class Login : AppCompatActivity() {
     private fun updateUI(user: FirebaseUser?) {
         if(user != null){
             Toast.makeText(applicationContext,"ログイン成功！", Toast.LENGTH_SHORT).show()
-            startActivity(Intent(applicationContext,HomeActivity::class.java).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK))
-//            startActivity(Intent(applicationContext,usercheck::class.java).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK))
+//            startActivity(Intent(applicationContext,HomeActivity::class.java).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK))
+            startActivity(Intent(applicationContext,usercheck::class.java).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK))
         }else{
             signOut()
             Toast.makeText(applicationContext,"ログイン失敗！", Toast.LENGTH_SHORT).show()
