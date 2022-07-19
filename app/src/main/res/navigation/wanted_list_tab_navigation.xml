@@ -33,5 +33,9 @@
     <fragment
         android:id="@+id/incomeSpending_Fragment"
         android:name="ecc_sys3_raichi.sys_3_raichi.wantedlist.IncomeSpending_Fragment"
-        android:label="IncomeSpending_Fragment" />
+        android:label="IncomeSpending_Fragment" >
+        <action
+            android:id="@+id/action_incomeSpending_Fragment_to_wantedListFragment"
+            app:destination="@id/wantedListFragment" />
+    </fragment>
 </navigation>

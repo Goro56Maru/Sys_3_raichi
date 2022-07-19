@@ -6,7 +6,9 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -14,6 +16,8 @@ import ecc_sys3_raichi.sys_3_raichi.R
 import kotlinx.android.synthetic.main.fragment_income_spending_.*
 
 class IncomeSpending_Fragment : Fragment(R.layout.fragment_income_spending_) {
+
+    private var uid = ""
 
     //auth
     private lateinit var auth: FirebaseAuth
@@ -27,16 +31,31 @@ class IncomeSpending_Fragment : Fragment(R.layout.fragment_income_spending_) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
+        //ログインユーザーのIDを取得する
+        auth = Firebase.auth
+        val currentUser = auth.currentUser
+        if (currentUser != null) {
+            uid = auth.uid.toString()
+        }else{
+            //テスト用のID代入
+            uid = "6BioaJRzzhNkBgaHP2boi9W7HGF2"
+        }
+
+
         saveButton.setOnClickListener{
 
             val remaining = remainingCheck()
-            setData(income,spend,remaining)
+            setData(income.toInt(),spend.toInt(),remaining)
 
             val textView = TextView(activity)
             textView.text = remaining.toString()
             textView.textSize = 30f
 
             text_ll.addView(textView)
+        }
+
+        BackButton.setOnClickListener {
+            findNavController().navigate(R.id.action_incomeSpending_Fragment_to_wantedListFragment)
         }
     }
 
@@ -61,9 +80,7 @@ class IncomeSpending_Fragment : Fragment(R.layout.fragment_income_spending_) {
         return 0
     }
 
-    fun setData(income: String, spend: String, remaining: Int) {
-        var uid = "eLMHnvNiO4sxxD7pwXlg"
-
+    fun setData(income: Int, spend: Int, remaining: Int) {
         val money = hashMapOf(
             "income" to income,
             "spend" to spend,
@@ -72,7 +89,7 @@ class IncomeSpending_Fragment : Fragment(R.layout.fragment_income_spending_) {
 
         //firebaseに保存
         val ref = db.collection("user").document(uid)
-        ref.update("users" ,FieldValue.arrayUnion(money)).addOnSuccessListener {
+        ref.update(money as Map<String, Any>).addOnSuccessListener {
             Toast.makeText(activity, "保存しました" , Toast.LENGTH_SHORT).show()
         }
     }

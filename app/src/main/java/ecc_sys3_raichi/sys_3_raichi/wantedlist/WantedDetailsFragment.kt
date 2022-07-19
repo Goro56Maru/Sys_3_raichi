@@ -13,6 +13,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import ecc_sys3_raichi.sys_3_raichi.LOGIN_ID
 import ecc_sys3_raichi.sys_3_raichi.R
 import ecc_sys3_raichi.sys_3_raichi.databinding.FragmentWantedDetailsBinding
 import kotlinx.coroutines.GlobalScope
@@ -21,6 +22,8 @@ import kotlinx.coroutines.launch
 
 //表示するリストのID
 var LISTID = ""
+
+var LISTPRI = 0
 
 class WantedDetailsFragment : Fragment() {
 
@@ -84,7 +87,7 @@ class WantedDetailsFragment : Fragment() {
         WantedListFragmentから選択された欲しいもののIDを取得して
         データベースから詳細情報を取得して表示する。
         */
-        Displaychange(false, android.widget.TextView.INVISIBLE, android.widget.ProgressBar.VISIBLE)
+        Displaychange(false, TextView.INVISIBLE, android.widget.ProgressBar.VISIBLE)
         GlobalScope.launch {
             val job = launch {
                 ViewUpdate()
@@ -117,7 +120,16 @@ class WantedDetailsFragment : Fragment() {
 
         //購入済みボタンが押された時の処理
         binding.purchasedButton.setOnClickListener {
-            Purchased()
+            try {
+                db.collection("user").document(uid).collection("list").document(LISTID).update("purchased",true)
+                    .addOnSuccessListener {
+                        Toast.makeText(context,"購入済みにしました", Toast.LENGTH_SHORT).show()
+                    }
+            }catch (e: Exception){
+                Displaychange(true, android.widget.TextView.VISIBLE, ProgressBar.INVISIBLE)
+                Toast.makeText(context, "失敗しました", Toast.LENGTH_SHORT).show()
+            }
+
         }
 
 
@@ -125,23 +137,23 @@ class WantedDetailsFragment : Fragment() {
         binding.button.setOnClickListener {
             try {
                 db.collection("user").document(uid).get().addOnSuccessListener {
-                    Toast.makeText(context, "${it["users"]}", Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(context, "${it["users"]}", Toast.LENGTH_SHORT).show()
                 }
-//                Displaychange(false, android.widget.TextView.INVISIBLE, android.widget.ProgressBar.VISIBLE)
-//                db.collection("user").document(uid).collection("list").document(LISTID).update("voter.${USERSID}",selectItem).addOnSuccessListener {
-//                    db.collection("user").document(uid).collection("list").document(LISTID).get()
-//                        .addOnSuccessListener { document ->
-//                            var pri = 0
-//                            var vot_data = document.data?.get("voter") as HashMap<*,*>
-//                            vot_data.values.forEach {
-//                                pri += it.toString().toInt()
-//                            }
-//                            db.collection("user").document(uid).collection("list").document(LISTID).update("list_priority",pri).addOnSuccessListener {
-//                                Displaychange(true, android.widget.TextView.VISIBLE, ProgressBar.INVISIBLE)
+                Displaychange(false, TextView.INVISIBLE, android.widget.ProgressBar.VISIBLE)
+                db.collection("user").document(uid).collection("list").document(LISTID).update("voter.${LOGIN_ID}",selectItem).addOnSuccessListener {
+                    db.collection("user").document(uid).collection("list").document(LISTID).get()
+                        .addOnSuccessListener { document ->
+                            var pri = 0
+                            var vot_data = document.data?.get("voter") as HashMap<*,*>
+                            vot_data.values.forEach {
+                                pri += it.toString().toInt()
+                            }
+                            db.collection("user").document(uid).collection("list").document(LISTID).update("list_priority",pri).addOnSuccessListener {
+                                Displaychange(true, android.widget.TextView.VISIBLE, ProgressBar.INVISIBLE)
 //                                Toast.makeText(context, "${pri}\n${vot_data}", Toast.LENGTH_SHORT).show()
-//                            }
-//                        }
-//                }
+                            }
+                        }
+                }
             }catch (e: Exception){
                 Displaychange(true, android.widget.TextView.VISIBLE, ProgressBar.INVISIBLE)
                 Toast.makeText(context, "投票に失敗しました", Toast.LENGTH_SHORT).show()
@@ -163,7 +175,7 @@ class WantedDetailsFragment : Fragment() {
             .addOnSuccessListener {
             binding.WantedName.text = it["list_name"].toString() //欲しいものの名前
             binding.WantedMoney.text = "${it["list_money"].toString()}円" //欲しいものの金額
-            binding.Priority.text = it["list_priority"].toString() //欲しいものの現在の優先順位
+            binding.Priority.text = LISTPRI.toString() //欲しいものの現在の優先順位
             binding.Proponent.text = it["list_prop"].toString() //欲しいものの提案者名
             binding.PropComment.text = it["list_comment"].toString() //欲しいものの投稿者コメント
 
@@ -189,13 +201,16 @@ class WantedDetailsFragment : Fragment() {
 
 
     private fun Purchased(){
-        db.collection("user").document(uid).collection("list").document(LISTID).update("purchased",true)
-            .addOnSuccessListener {
-                Toast.makeText(context,"updateにしました", Toast.LENGTH_SHORT).show()
-            }.addOnFailureListener{
-                //登録が失敗した時、Toastを表示する
-                Toast.makeText(context,"updateに失敗しました", Toast.LENGTH_SHORT).show()
-            }
+        try {
+            db.collection("user").document(uid).collection("list").document(LISTID).update("purchased",true)
+                .addOnSuccessListener {
+                    Toast.makeText(context,"購入済みにしました", Toast.LENGTH_SHORT).show()
+                }
+        }catch (e: Exception){
+            Displaychange(true, android.widget.TextView.VISIBLE, ProgressBar.INVISIBLE)
+            Toast.makeText(context, "失敗しました", Toast.LENGTH_SHORT).show()
+        }
+        Displaychange(true, android.widget.TextView.VISIBLE, ProgressBar.INVISIBLE)
     }
 
     companion object {

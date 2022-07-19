@@ -18,6 +18,7 @@
         android:gravity="center_horizontal"
         android:text="メンバー選択"
         android:textSize="48sp"
+        app:layout_constraintBottom_toTopOf="@+id/userviewcheck"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -25,10 +26,53 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/userviewcheck"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="20dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/member2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/userchecktext" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/member2"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="65dp"
+        android:layout_marginEnd="65dp"
+        android:layout_marginBottom="8dp"
+        android:hint="メンバー名"
+        app:endIconMode="clear_text"
+        app:layout_constraintBottom_toTopOf="@+id/useradd_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userviewcheck"
+        app:startIconDrawable="@drawable/account">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/member_text"
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:inputType="textEmailAddress"
+            android:textSize="15dp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/useradd_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="8dp"
+        android:text="メンバー追加"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/member" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

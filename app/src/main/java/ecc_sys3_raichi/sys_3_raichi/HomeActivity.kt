@@ -7,6 +7,9 @@ import ecc_sys3_raichi.sys_3_raichi.databinding.ActivityHomeBinding
 
 val TabArray = arrayOf("欲しいもの\n一覧","購入済み\n一覧","欲しいもの\n登録","設定")
 
+var LOGIN_USER = ""
+var LOGIN_ID = ""
+
 class HomeActivity : AppCompatActivity() {
 
     private lateinit var binding:ActivityHomeBinding

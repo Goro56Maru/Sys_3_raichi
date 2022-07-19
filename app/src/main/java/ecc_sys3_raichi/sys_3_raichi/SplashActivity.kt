@@ -12,6 +12,7 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import ecc_sys3_raichi.sys_3_raichi.login.Login
+import ecc_sys3_raichi.sys_3_raichi.user.usercheck
 
 class SplashActivity : AppCompatActivity() {
     // [START declare_auth]
@@ -45,7 +46,7 @@ class SplashActivity : AppCompatActivity() {
     private fun updateUI(user: FirebaseUser?) {
         if(user != null){
             Toast.makeText(this,"ログイン成功！", Toast.LENGTH_SHORT).show()
-            startActivity(Intent(this,HomeActivity::class.java))
+            startActivity(Intent(this,usercheck::class.java))
             finish()
         }else{
             signOut()

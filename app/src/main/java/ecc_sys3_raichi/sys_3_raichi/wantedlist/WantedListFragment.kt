@@ -81,6 +81,9 @@ class WantedListFragment : Fragment() {
 
         binding.progressBar.visibility = android.widget.ProgressBar.VISIBLE
         binding.recyclerView.visibility = android.widget.ListView.INVISIBLE
+        db.collection("user").document(uid).get().addOnSuccessListener {
+            binding.useMoney.text = it["remaining"].toString() + "円"
+        }
         ListView.clear()    //リスト表示前にデータを空にしておく
         GlobalScope.launch {
             val job = launch {
@@ -117,6 +120,7 @@ class WantedListFragment : Fragment() {
             override fun onItemClickListener(view: View, position: Int, clickedText: WantedListData) {
                 //選択されたリストのID
                 LISTID = clickedText.ListID
+                LISTPRI = position+1
                 //そのリストの詳細画面に遷移する
                 findNavController().navigate(R.id.action_wantedListFragment_to_wantedDetailsFragment)
             }
@@ -135,13 +139,16 @@ class WantedListFragment : Fragment() {
         db.collection("user").document(uid).collection("list").whereEqualTo("purchased",false).get().addOnSuccessListener {
             ListView.clear()
             var count = 0
+            var money = 0
             for (i in it){
-                    count += 1
-                    var setList = WantedListData(i.id, i.data["list_name"] as String,i.data["list_money"].toString().toInt(),i.data["list_prop"]as String,i.data["list_priority"].toString().toInt(),i.data["list_comment"] as String)
-                    ListView.add(setList)
-                    ListView.sortByDescending { it.ListPriority }
-                    adapter.notifyDataSetChanged()
+                count += 1
+                var setList = WantedListData(i.id, i.data["list_name"] as String,i.data["list_money"].toString().toInt(),i.data["list_prop"]as String,i.data["list_priority"].toString().toInt(),i.data["list_comment"] as String)
+                money += i.data["list_money"].toString().toInt()
+                ListView.add(setList)
+                ListView.sortByDescending { it.ListPriority }
+                adapter.notifyDataSetChanged()
             }
+            binding.wantedMoneys.text = money.toString() + "円"
             binding.progressBar.visibility = android.widget.ProgressBar.INVISIBLE
             binding.recyclerView.visibility = android.widget.ListView.VISIBLE
         }.addOnFailureListener {

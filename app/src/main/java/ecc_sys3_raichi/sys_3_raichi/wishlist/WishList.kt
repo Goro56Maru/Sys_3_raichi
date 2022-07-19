@@ -11,6 +11,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import ecc_sys3_raichi.sys_3_raichi.LOGIN_USER
 import ecc_sys3_raichi.sys_3_raichi.databinding.ActivityWishListBinding
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
@@ -108,7 +109,7 @@ class WishList : Fragment() {
             "list_name" to list_name,
             "list_money" to list_money,
             "list_comment" to list_comment,
-            "list_prop" to user_name,
+            "list_prop" to LOGIN_USER,
             "list_priority" to 0,
             "purchased" to false,
             "voter" to hashMapOf<String,Int>()
