@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.navigation.fragment.findNavController
+import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FieldValue
@@ -19,6 +20,8 @@ import ecc_sys3_raichi.sys_3_raichi.databinding.FragmentWantedDetailsBinding
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import java.util.*
+import kotlin.collections.HashMap
 
 //表示するリストのID
 var LISTID = ""
@@ -120,16 +123,13 @@ class WantedDetailsFragment : Fragment() {
 
         //購入済みボタンが押された時の処理
         binding.purchasedButton.setOnClickListener {
-            try {
-                db.collection("user").document(uid).collection("list").document(LISTID).update("purchased",true)
-                    .addOnSuccessListener {
-                        Toast.makeText(context,"購入済みにしました", Toast.LENGTH_SHORT).show()
-                    }
-            }catch (e: Exception){
-                Displaychange(true, android.widget.TextView.VISIBLE, ProgressBar.INVISIBLE)
-                Toast.makeText(context, "失敗しました", Toast.LENGTH_SHORT).show()
+            GlobalScope.launch {
+                val job = launch {
+                   Purchased()
+                }
+                delay(3000)
+                job.cancel()
             }
-
         }
 
 
@@ -202,8 +202,13 @@ class WantedDetailsFragment : Fragment() {
 
     private fun Purchased(){
         try {
-            db.collection("user").document(uid).collection("list").document(LISTID).update("purchased",true)
+            val updates = hashMapOf<String, Any>(
+                "purchased" to true,
+                "timestamp" to Timestamp(Date())
+            )
+            db.collection("user").document(uid).collection("list").document(LISTID).update(updates)
                 .addOnSuccessListener {
+                    findNavController().navigate(R.id.action_wantedDetailsFragment_to_wantedListFragment)
                     Toast.makeText(context,"購入済みにしました", Toast.LENGTH_SHORT).show()
                 }
         }catch (e: Exception){

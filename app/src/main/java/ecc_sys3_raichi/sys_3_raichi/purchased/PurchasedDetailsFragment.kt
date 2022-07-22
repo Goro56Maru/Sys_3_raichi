@@ -21,6 +21,8 @@ import ecc_sys3_raichi.sys_3_raichi.wantedlist.WantedDetailsFragment
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import java.sql.Timestamp
+import java.text.SimpleDateFormat
 
 //表示するリストのID
 var LISTID_p = ""
@@ -112,9 +114,12 @@ class PurchasedDetailsFragment : Fragment() {
     private fun ViewpurchasedUpdate() {
         db.collection("user").document(uid).collection("list").document(LISTID_p).get()
             .addOnSuccessListener {
+                val date = it["timestamp"] as com.google.firebase.Timestamp
+                val time = date.toDate()
+                val sdf = SimpleDateFormat("yyyy年MM月dd日")
                 binding.WantedName.text = it["list_name"].toString() //欲しいものの名前
                 binding.WantedMoney.text = "${it["list_money"].toString()}円" //欲しいものの金額
-                binding.Priority.text = it["list_priority"].toString() //欲しいものの現在の優先順位
+                binding.Priority.text = sdf.format(time).toString() //欲しいものの現在の優先順位
                 binding.Proponent.text = it["list_prop"].toString() //欲しいものの提案者名
                 binding.PropComment.text = it["list_comment"].toString() //欲しいものの投稿者コメント
                 Displaychange(true, android.widget.TextView.VISIBLE, ProgressBar.INVISIBLE)
