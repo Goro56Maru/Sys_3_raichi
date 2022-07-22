@@ -33,7 +33,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="現在の優先順位"
+                    android:text="購入日付"
                     android:textSize="20sp" />
 
                 <TextView
@@ -41,7 +41,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="15"
-                    android:text="優先順位"
                     android:textSize="20sp" />
 
             </LinearLayout>

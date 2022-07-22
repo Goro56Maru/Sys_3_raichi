@@ -4,7 +4,7 @@ data class WantedListData(
     var ListID: String,
     var ListName: String,
     var ListMoney: Int,
-    var ListProp : String,
-    var ListPriority : Int,
-    var ListComment : String
+    var ListProp: String,
+    var ListPriority: Int,
+    var ListComment: String
 )

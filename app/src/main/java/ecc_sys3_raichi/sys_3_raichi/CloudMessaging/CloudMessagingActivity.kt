@@ -38,6 +38,7 @@ class CloudMessagingActivity : AppCompatActivity() {
             Timber.d(msg)
             //Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show(
             startActivity(Intent(this, SplashActivity::class.java))
+            finish()
         })
 
     }

@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
@@ -37,10 +38,10 @@ class PurchasedListFragment : Fragment() {
     private var uid = ""
 
     //表示するリストデータ
-    private var ListView: MutableList<WantedListData> = ArrayList()
+    private var ListView: MutableList<PurchasedData> = ArrayList()
 
     //RecyclerView用のアダプター
-    private val adapter = WantedListAdapter(ListView)
+    private val adapter = PurchasedAdapter(ListView)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -95,32 +96,44 @@ class PurchasedListFragment : Fragment() {
         }
 
         //データが更新されるたびに表示を更新する
-        db.collection("user").document(uid).collection("list")
-            .addSnapshotListener { snapshots, e ->
-                if (e != null) {
-                    Log.w(ContentValues.TAG, "listen:error", e)
-                    return@addSnapshotListener
+//        db.collection("user").document(uid).collection("list")
+//            .addSnapshotListener { snapshots, e ->
+//                if (e != null) {
+//                    Log.w(ContentValues.TAG, "listen:error", e)
+//                    return@addSnapshotListener
+//                }
+//                //更新があるとき表示を更新
+//                if (snapshots != null) {
+//                    binding.progressBar.visibility = android.widget.ProgressBar.VISIBLE
+//                    binding.recyclerView.visibility = android.widget.ListView.INVISIBLE
+//                    GlobalScope.launch {
+//                        val job = launch {
+//                            ListViewUpdate()
+//                        }
+//                        delay(3000)
+//                        job.cancel()
+//                    }
+//                }
+//            }
+
+        binding.textView3.setOnClickListener {
+            binding.progressBar.visibility = android.widget.ProgressBar.VISIBLE
+            binding.recyclerView.visibility = android.widget.ListView.INVISIBLE
+            GlobalScope.launch {
+                val job = launch {
+                    ListViewUpdate()
                 }
-                //更新があるとき表示を更新
-                if (snapshots != null) {
-                    binding.progressBar.visibility = android.widget.ProgressBar.VISIBLE
-                    binding.recyclerView.visibility = android.widget.ListView.INVISIBLE
-                    GlobalScope.launch {
-                        val job = launch {
-                            ListViewUpdate()
-                        }
-                        delay(3000)
-                        job.cancel()
-                    }
-                }
+                delay(3000)
+                job.cancel()
             }
+        }
 
         //リストが選択された時
-        adapter.setOnItemClickListener(object : WantedListAdapter.OnItemClickListener {
+        adapter.setOnItemClickListener(object : PurchasedAdapter.OnItemClickListener {
             override fun onItemClickListener(
                 view: View,
                 position: Int,
-                clickedText: WantedListData
+                clickedText: PurchasedData
             ) {
                 //選択されたリストのID
                 LISTID_p = clickedText.ListID
@@ -136,13 +149,17 @@ class PurchasedListFragment : Fragment() {
         db.collection("user").document(uid).collection("list").whereEqualTo("purchased",true).get().addOnSuccessListener {
             ListView.clear()
             for (i in it) {
-                var setList = WantedListData(
+
+                var date = i.data["timestamp"] as Timestamp
+                val time = date.toDate()
+
+                var setList = PurchasedData(
                     i.id,
-                    i.data["list_name"] as String,
+                    i.data["list_name"].toString(),
                     i.data["list_money"].toString().toInt(),
-                    i.data["list_prop"] as String,
-                    i.data["list_priority"].toString().toInt(),
-                    i.data["list_comment"] as String
+                    i.data["list_prop"].toString(),
+                    time,
+                    i.data["list_comment"].toString()
                 )
                 ListView.add(setList)
                 adapter.notifyDataSetChanged()
